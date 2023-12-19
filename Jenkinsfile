@@ -5,6 +5,21 @@
 pipeline {
     agent none
     stages {
+      stage('Setup parameters') {
+            steps {
+                script {
+                    properties([
+                        parameters([    
+                        
+                        choice(
+                            choices: ['DEV','Main'], 
+                            name: 'Environment'   
+                                ),
+                      ])
+                    ])
+                }
+            }
+        }
        
         stage('Prepare ansible environment') {
             agent any
@@ -42,13 +57,10 @@ pipeline {
 
              
                stage("Build docker images on build host") {
-                    when {
-                       expression { 
-                           def currentBranch = BRANCH_NAME
-                           echo "Current branch: ${currentBranch}"
-                           currentBranch == 'origin/main'
-                       }
-                     }
+                   when{ 
+                      expression {
+                        env.Environment == 'DEV' }
+                    }
                    steps {
                        sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "build" --limit build install_fake-backend.yml'
                    }
