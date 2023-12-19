@@ -34,9 +34,6 @@ pipeline {
                }*/
                stage("Verify ansible playbook syntax") {
                    steps {
-                       sh 'sudo sudo add-apt-repository universe'
-                       sh 'sudo apt update -y'
-                       sh 'sudo apt install python-pip -y'
                        sh 'sudo pip install ansible-lint'
                        sh 'ansible-lint -x 306 install_fake-backend.yml'
                        sh 'echo "${GIT_BRANCH}"'
