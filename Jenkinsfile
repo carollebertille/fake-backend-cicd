@@ -42,13 +42,13 @@ pipeline {
 
               
                stage("Build docker images on build host") {
-                   when {
-                     expression { 
-                            def currentBranch = env.BRANCH_NAME
-                            echo "Current branch: ${currentBranch}"
-                            currentBranch.equalsIgnoreCase('origin/dev')
-                         }
+                    when {
+                       expression { 
+                           def currentBranch = BRANCH_NAME
+                           echo "Current branch: ${currentBranch}"
+                           currentBranch == 'origin/dev'
                        }
+                     }
                    steps {
                        sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "build" --limit build install_fake-backend.yml'
                    }
