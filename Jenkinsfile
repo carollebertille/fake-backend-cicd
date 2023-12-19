@@ -27,11 +27,11 @@ pipeline {
                        sh 'ansible-galaxy install  -r roles/requirements.yml'
                    }
                }
-               stage("Ping targeted hosts") {
+               /*stage("Ping targeted hosts") {
                    steps {
                        sh 'sudo ansible all -m ping -i hosts --private-key=../.ssh/id_rsa'
                    }
-               }
+               }*/
                stage("Verify ansible playbook syntax") {
                    steps {
                        sh 'ansible-lint -x 306 install_fake-backend.yml'
