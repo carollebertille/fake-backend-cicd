@@ -19,11 +19,12 @@ pipeline {
             }
         }
         stage('Test and deploy the application in preproduction') {
-             agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
-             stages {
+             agent none
+            stages {
                stage("Install ansible role dependencies") {
+            agent any
                    steps {
-                       sh 'ansible-galaxy install -r roles/requirements.yml'
+                       sh 'ansible-galaxy install  -r roles/requirements.yml'
                    }
                }
                stage("Ping targeted hosts") {
