@@ -15,7 +15,7 @@ pipeline {
             steps {
                 sh 'echo \$VAULTKEY > vault.key'
                 sh 'cp \$DEVOPSKEY id_rsa'
-                sh 'chmod 644 id_rsa'
+                sh 'chmod 700 id_rsa'
             }
         }
         stage('Test and deploy the application in preproduction') {
@@ -29,7 +29,7 @@ pipeline {
                }
                stage("Ping targeted hosts") {
                    steps {
-                       sh 'sudo ansible all -m ping -i hosts --private-key=id_rsa'
+                       sh 'ansible all -m ping -i hosts --private-key=id_rsa'
                    }
                }
               /*stage("Verify ansible playbook syntax") {
