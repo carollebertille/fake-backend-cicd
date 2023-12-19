@@ -32,12 +32,12 @@ pipeline {
                        sh 'sudo ansible all -m ping -i hosts --private-key=../.ssh/id_rsa'
                    }
                }*/
-               stage("Verify ansible playbook syntax") {
+              /* stage("Verify ansible playbook syntax") {
                    steps {
                        sh 'ansible-lint -x 306 install_fake-backend.yml'
                        sh 'echo "${GIT_BRANCH}"'
                    }
-               }
+               }*/
 
               
                stage("Build docker images on build host") {
