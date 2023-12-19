@@ -3,10 +3,10 @@
 
 
 pipeline {
-    agent none
+    agent any
     stages {
       stage('Setup parameters') {
-          agent any
+          
             steps {
                 script {
                     properties([
@@ -23,7 +23,7 @@ pipeline {
         }
        
         stage('Prepare ansible environment') {
-            agent any
+           
             environment {
                 VAULTKEY = credentials('vaultkey')
                 DEVOPSKEY = credentials('devopskey')
@@ -35,10 +35,10 @@ pipeline {
             }
         }
         stage('Test and deploy the application in preproduction') {
-            agent none
+            
             stages {
                stage("Install ansible role dependencies") {
-            agent any
+           
                    steps {
                        sh 'ansible-galaxy install  -r roles/requirements.yml'
                    }
