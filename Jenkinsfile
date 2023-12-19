@@ -40,7 +40,13 @@ pipeline {
                    }
                }*/
 
-              
+              stage("Print Environment Variables") {
+                steps {
+                    script {
+                        echo "All environment variables: ${env}"
+                      }
+                    }
+                }
                stage("Build docker images on build host") {
                     when {
                        expression { 
