@@ -29,7 +29,7 @@ pipeline {
                }
                stage("Ping targeted hosts") {
                    steps {
-                       sh 'ansible build -m ping'
+                       sh 'ansible all -m ping -i hosts'
                    }
                }
                stage("Verify ansible playbook syntax") {
