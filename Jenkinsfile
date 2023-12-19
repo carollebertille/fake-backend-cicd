@@ -12,7 +12,7 @@ pipeline {
                         parameters([    
                         
                         choice(
-                            choices: ['DEV','Main'], 
+                            choices: ['dev','main'], 
                             name: 'Environment'   
                                 ),
                       ])
