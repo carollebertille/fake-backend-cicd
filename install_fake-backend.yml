@@ -1,6 +1,6 @@
 ---
 - name: install docker and git
-  hosts: build 
+  hosts: local
   become: true
   vars_files:
     - "files/secrets/devops.yml"
