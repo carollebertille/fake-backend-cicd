@@ -15,7 +15,7 @@ pipeline {
             steps {
                 sh 'echo \$VAULTKEY > vault.key'
                 sh 'cp \$DEVOPSKEY id_rsa'
-                sh 'chmod 600 id_rsa'
+                sh 'chmod 644 id_rsa'
             }
         }
         stage('Test and deploy the application in preproduction') {
