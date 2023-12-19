@@ -1,5 +1,5 @@
 ---
-fake_backend_source_repo: "git@github.com:carollebertille/fake-backend-code.git"
+fake_backend_source_repo: "https://github.com/carollebertille/fake-backend-code.git"
 fake_backend_source_branch: "main"
 fake_backend_image_tag: "JenkinsCICDnew"
 
