@@ -40,19 +40,13 @@ pipeline {
                    }
                }*/
 
-              stage("Print Environment Variables") {
-                steps {
-                    script {
-                        echo "All environment variables: ${env}"
-                      }
-                    }
-                }
+             
                stage("Build docker images on build host") {
                     when {
                        expression { 
                            def currentBranch = BRANCH_NAME
                            echo "Current branch: ${currentBranch}"
-                           currentBranch == 'origin/dev'
+                           currentBranch == 'origin/main'
                        }
                      }
                    steps {
