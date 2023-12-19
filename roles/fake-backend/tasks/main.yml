@@ -8,7 +8,7 @@
     email: "{{ docker_hub_email }}"
     password: "{{ docker_hub_password }}"
   tags:
-    - build
+    - localhost
 
 - name: create project directory
   file:
