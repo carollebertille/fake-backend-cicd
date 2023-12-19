@@ -1,0 +1,53 @@
+---
+# This playbook is used to deploy fake-backend application based on Docker
+
+# build and push builded images
+
+- name: Log into DockerHub
+  docker_login:
+    username: "{{ docker_hub_login }}"
+    email: "{{ docker_hub_email }}"
+    password: "{{ docker_hub_password }}"
+  tags:
+    - build
+
+- name: create project directory
+  file:
+    path: "{{ home }}/application-battleboat"
+    state: directory
+  tags:
+    - build
+
+- name: Retrieve fakebackend addons source code
+  git:
+    repo: "{{ fake_backend_source_repo }}"
+    dest: "{{ home }}/application-battleboat"
+    accept_hostkey: yes
+    force: yes
+    recursive: no
+    version: "{{ fake_backend_source_branch }}"
+  tags:
+    - build
+  
+
+- name: Build image and push it to Docker Hub
+  docker_image:
+    path: "{{ home }}/application-battleboat/fake-backend"
+    name: "{{ docker_hub_login }}/fake-backend"
+    push: yes
+    tag: "{{ fake_backend_image_tag }}"
+  tags:
+    - build
+
+
+- name: Remove image on build host
+  docker_image:
+    state: absent
+    name: "{{ docker_hub_login }}/fake-backend"
+    tag: "{{ fake_backend_image_tag }}"
+  tags:
+    - build
+
+
+
+
