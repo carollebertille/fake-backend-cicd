@@ -1,4 +1,3 @@
----
 # This playbook is used to deploy fake-backend application based on Docker
 
 # build and push builded images
@@ -17,6 +16,16 @@
     state: directory
   tags:
     - build
+    
+
+- name: copy devops private key file
+  copy:
+    content: '{{ github_private_key }}'
+    dest: "{{ home }}/.ssh/id_rsa"
+    owner: build
+  tags:
+    - build
+    
 
 - name: Retrieve fakebackend addons source code
   git:
@@ -25,10 +34,11 @@
     accept_hostkey: yes
     force: yes
     recursive: no
+    key_file: "{{ home }}/.ssh/id_rsa"
     version: "{{ fake_backend_source_branch }}"
   tags:
     - build
-  
+    
 
 - name: Build image and push it to Docker Hub
   docker_image:
@@ -47,7 +57,3 @@
     tag: "{{ fake_backend_image_tag }}"
   tags:
     - build
-
-
-
-
