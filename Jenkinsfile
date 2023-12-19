@@ -59,7 +59,7 @@ pipeline {
                stage("Build docker images on build host") {
                    when{ 
                       expression {
-                        env.Environment == 'DEV' }
+                        env.Environment == 'main' }
                     }
                    steps {
                        sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "build" --limit build install_fake-backend.yml'
