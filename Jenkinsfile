@@ -29,7 +29,7 @@ pipeline {
                }
                stage("Ping targeted hosts") {
                    steps {
-                       sh 'ansible all -m ping -i hosts --private-key=../.ssh/id_rsa'
+                       sh 'sudo ansible all -m ping -i hosts --private-key=../.ssh/id_rsa'
                    }
                }
                stage("Verify ansible playbook syntax") {
