@@ -27,11 +27,11 @@ pipeline {
                        sh 'ansible-galaxy install  -r roles/requirements.yml'
                    }
                }
-               stage("Ping targeted hosts") {
+               /*stage("Ping targeted hosts") {
                    steps {
                        sh 'ansible all -m ping -i hosts --private-key=id_rsa'
                    }
-               }
+               }*/
                stage("Install ansible-lint") {
                  steps {
                       sh 'pip install ansible-lint'
