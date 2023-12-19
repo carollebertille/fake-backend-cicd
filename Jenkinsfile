@@ -6,6 +6,7 @@ pipeline {
     agent none
     stages {
       stage('Setup parameters') {
+          agent any
             steps {
                 script {
                     properties([
@@ -34,7 +35,7 @@ pipeline {
             }
         }
         stage('Test and deploy the application in preproduction') {
-            agent none 
+            agent none
             stages {
                stage("Install ansible role dependencies") {
             agent any
