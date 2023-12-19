@@ -19,7 +19,7 @@ pipeline {
             }
         }
         stage('Test and deploy the application in preproduction') {
-             agent none
+             
             stages {
                stage("Install ansible role dependencies") {
             agent any
