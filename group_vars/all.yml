@@ -6,8 +6,8 @@ fake_backend_image_tag: "0.0.1"
 home: "/home/centos"
 
 
-
-ip_addr_prod: "192.168.1.92"
+ip_addr_preprod: "54.196.83.143"
+ip_addr_prod: "54.80.102.34"
 port_app: "8181"
 
 #secret data vaulted
